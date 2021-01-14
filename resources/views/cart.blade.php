@@ -14,6 +14,8 @@
 
     <!-- Styles -->
     <style>
+        *{font-size: 14px;}
+        h2{font-size: 20px;}
         .cart {
             padding-bottom: 20px;
             padding-top: 20px;
@@ -22,35 +24,48 @@
 </head>
 <body>
 <div class="row" id="app">
+    <pre>
+    @php
+       
+    @endphp
+    </pre>
     <div class="container cart">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>ADD ITEM</h2>
-                        <p>(This is using custom database storage)</p>
-                        <div class="form-group form-group-sm">
-                            <label>ID</label>
-                            <input v-model="item.id" class="form-control" placeholder="Id">
+                        <h2>{{trans("cart.add_item")}}</h2>
+                        <!--<p>(This is using custom database storage)</p>-->
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group form-group-sm">
+                                    <label>{{trans("cart.item.id")}}</label>
+                                    <input v-model="item.id" class="form-control" placeholder="{{trans('cart.item.id')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group form-group-sm">
+                                    <label>{{trans("cart.item.name")}}</label>
+                                    <input v-model="item.name" class="form-control" placeholder="{{trans('cart.item.id')}}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group form-group-sm">
-                            <label>Name</label>
-                            <input v-model="item.name" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label>Price</label>
-                            <input v-model="item.price" class="form-control" placeholder="Price">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label>Qty</label>
-                            <input v-model="item.qty" class="form-control" placeholder="Quantity">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group form-group-sm">
+                                    <label>{{trans("cart.item.price")}}</label>
+                                    <input v-model="item.price" class="form-control" placeholder="{{trans('cart.item.price')}}">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group form-group-sm">
+                                    <label>{{trans("cart.item.qty")}}</label>
+                                    <input v-model="item.qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
+                                </div>
+                            </div>
                         </div>
                         <button v-on:click="addItem()" class="btn btn-primary">Add Item</button>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-3">
-                <div class="row">
                     <div class="col-lg-12">
                         <h2>ADD CONDITIONS</h2>
                         <div class="form-group form-group-sm">
@@ -82,6 +97,11 @@
                     </div>
                 </div>
             </div>
+            <!--<div class="col-lg-3">
+                <div class="row">
+                    
+                </div>
+            </div>-->
             <div class="col-lg-6">
                 <h2>CART</h2>
                 <table class="table">
