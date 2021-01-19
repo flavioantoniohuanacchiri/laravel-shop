@@ -64,20 +64,20 @@
                                 </div>
                             </div>
                         </div>
-                        <button v-on:click="addItem()" class="btn btn-primary">Add Item</button>
+                        <button v-on:click="addItem()" class="btn btn-primary">{{trans("cart.add_item")}}</button>
                     </div>
                     <div class="col-lg-12">
-                        <h2>ADD CONDITIONS</h2>
+                        <h2>{{trans("cart.add_conditions")}}</h2>
                         <div class="form-group form-group-sm">
-                            <label>name*</label>
-                            <input v-model="cartCondition.name" placeholder="Sale 5%" class="form-control" placeholder="Id">
+                            <label>{{trans("cart.item.name")}}</label>
+                            <input v-model="cartCondition.name" placeholder="{{trans('cart.sale5')}}" class="form-control" placeholder="Id">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Type (Any string that defines the type of your condition)*</label>
-                            <input v-model="cartCondition.type" placeholder="sale" class="form-control" placeholder="Name">
+                            <label>{{trans("cart.type_condition")}}</label>
+                            <input v-model="cartCondition.type" placeholder="{{trans('cart.sale')}}" class="form-control" placeholder="Name">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Target*</label>
+                            <label>{{trans("cart.target")}}</label>
                             <select v-model="cartCondition.target" class="form-control">
                                 <option v-for="target in options.target" :key="target.key" :value="target.key">
                                     @{{ target.label }}
@@ -85,15 +85,15 @@
                             </select>
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Value*</label>
+                            <label>{{trans("cart.value")}}</label>
                             <input v-model="cartCondition.value" placeholder="-12% or -10 or +10 etc" class="form-control" placeholder="Quantity">
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <button v-on:click="addCartCondition()" class="btn btn-primary">Add Condition</button>
+                        <button v-on:click="addCartCondition()" class="btn btn-primary">{{trans("cart.add_conditions")}}</button>
                     </div>
                     <div class="col-lg-6">
-                        <button v-on:click="clearCartCondition()" class="btn btn-primary">Clear Conditions</button>
+                        <button v-on:click="clearCartCondition()" class="btn btn-primary">{{trans("cart.clear_conditions")}}</button>
                     </div>
                 </div>
             </div>
@@ -103,15 +103,15 @@
                 </div>
             </div>-->
             <div class="col-lg-6">
-                <h2>CART</h2>
+                <h2>{{trans("cart.clear_conditions")}}</h2>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th>{{trans("cart.item.id")}}</th>
+                        <th>{{trans("cart.item.name")}}</th>
+                        <th>{{trans("cart.item.qty")}}</th>
+                        <th>{{trans("cart.item.price")}}</th>
+                        <th>{{trans("cart.action")}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -128,20 +128,20 @@
                 </table>
                 <table class="table">
                     <tr>
-                        <td>Items on Cart:</td>
+                        <td>{{trans('cart.items_cart')}}:</td>
                         <td>@{{itemCount}}</td>
                     </tr>
                     <tr>
-                        <td>Total Qty:</td>
+                        <td>{{trans('cart.total_qty')}}:</td>
                         <td>@{{ details.total_quantity }}</td>
                     </tr>
                     <tr>
                         <td>Sub Total:</td>
-                        <td>@{{ '$' + details.sub_total.toFixed(2) }} (@{{details.cart_sub_total_conditions_count}} conditions applied)</td>
+                        <td>@{{ '$' + details.sub_total.toFixed(2) }} (@{{details.cart_sub_total_conditions_count}} {{trans('cart.conditions_applied')}})</td>
                     </tr>
                     <tr>
                         <td>Total:</td>
-                        <td>@{{ '$' + details.total.toFixed(2) }} (@{{details.cart_total_conditions_count}} conditions applied)</td>
+                        <td>@{{ '$' + details.total.toFixed(2) }} (@{{details.cart_total_conditions_count}} {{trans('cart.conditions_applied')}})</td>
                     </tr>
                 </table>
             </div>
@@ -154,38 +154,38 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h2>ADD WISHLIST ITEM</h2>
+                        <h2>{{trans('cart.add_wishlist_item')}}</h2>
                         <p>(This is using default session storage)</p>
                         <div class="form-group form-group-sm">
-                            <label>ID</label>
-                            <input v-model="item.id" class="form-control" placeholder="Id">
+                            <label>{{trans("cart.item.id")}}</label>
+                            <input v-model="item.id" class="form-control" placeholder="{{trans('cart.item.id')}}">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Name</label>
-                            <input v-model="item.name" class="form-control" placeholder="Name">
+                            <label>{{trans("cart.item.name")}}</label>
+                            <input v-model="item.name" class="form-control" placeholder="{{trans('cart.item.name')}}">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Price</label>
-                            <input v-model="item.price" class="form-control" placeholder="Price">
+                            <label>{{trans("cart.item.price")}}</label>
+                            <input v-model="item.price" class="form-control" placeholder="{{trans('cart.item.price')}}">
                         </div>
                         <div class="form-group form-group-sm">
-                            <label>Qty</label>
-                            <input v-model="item.qty" class="form-control" placeholder="Quantity">
+                            <label>{{trans("cart.item.qty")}}</label>
+                            <input v-model="item.qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
                         </div>
                         <button v-on:click="addItem()" class="btn btn-primary">Add Item</button>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <h2>WISHLIST</h2>
+                <h2>{{trans("cart.wishlist")}}</h2>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Qty</th>
-                        <th>Price</th>
-                        <th>Action</th>
+                        <th>{{trans("cart.item.id")}}</th>
+                        <th>{{trans("cart.item.name")}}</th>
+                        <th>{{trans("cart.item.qty")}}</th>
+                        <th>{{trans("cart.item.price")}}</th>
+                        <th>{{trans("cart.action")}}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -202,11 +202,11 @@
                 </table>
                 <table class="table">
                     <tr>
-                        <td>Items on Cart:</td>
+                        <td>{{trans('cart.items_cart')}}:</td>
                         <td>@{{itemCount}}</td>
                     </tr>
                     <tr>
-                        <td>Total Qty:</td>
+                        <td>{{trans('cart.total_qty')}}:</td>
                         <td>@{{ details.total_quantity }}</td>
                     </tr>
                     <tr>
