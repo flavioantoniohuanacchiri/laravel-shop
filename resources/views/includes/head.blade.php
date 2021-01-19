@@ -5,6 +5,7 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.all.min.css')}}">
 <!-- Styles -->
 <style>
     *{font-size: 14px;}
@@ -24,5 +25,12 @@
     }
     .item{
     	margin: 10px auto;
+    }
+    .btn-cart-detail{
+        border-radius: 30px;
+        height: 55px;
+    }
+    .btn-cart-detail img{
+        max-width: 23px;
     }
 </style>

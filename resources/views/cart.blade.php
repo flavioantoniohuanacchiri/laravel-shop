@@ -25,81 +25,11 @@
                 </div>
             </template>
         </div>
-        <!--<div class="row">
+        <div class="row">
             <div class="col-lg-6">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h2>{{trans("cart.add_item")}}</h2>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group form-group-sm">
-                                    <label>{{trans("cart.item.id")}}</label>
-                                    <input v-model="item.id" class="form-control" placeholder="{{trans('cart.item.id')}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group form-group-sm">
-                                    <label>{{trans("cart.item.name")}}</label>
-                                    <input v-model="item.name" class="form-control" placeholder="{{trans('cart.item.id')}}">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="form-group form-group-sm">
-                                    <label>{{trans("cart.item.price")}}</label>
-                                    <input v-model="item.price" class="form-control" placeholder="{{trans('cart.item.price')}}">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group form-group-sm">
-                                    <label>{{trans("cart.item.qty")}}</label>
-                                    <input v-model="item.qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
-                                </div>
-                            </div>
-                        </div>
-                        <button v-on:click="addItem()" class="btn btn-primary">Add Item</button>
-                    </div>
-                    <div class="col-lg-12">
-                        <h2>ADD CONDITIONS</h2>
-                        <div class="form-group form-group-sm">
-                            <label>name*</label>
-                            <input v-model="cartCondition.name" placeholder="Sale 5%" class="form-control" placeholder="Id">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label>Type (Any string that defines the type of your condition)*</label>
-                            <input v-model="cartCondition.type" placeholder="sale" class="form-control" placeholder="Name">
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label>Target*</label>
-                            <select v-model="cartCondition.target" class="form-control">
-                                <option v-for="target in options.target" :key="target.key" :value="target.key">
-                                    @{{ target.label }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-group form-group-sm">
-                            <label>Value*</label>
-                            <input v-model="cartCondition.value" placeholder="-12% or -10 or +10 etc" class="form-control" placeholder="Quantity">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <button v-on:click="addCartCondition()" class="btn btn-primary">Add Condition</button>
-                    </div>
-                    <div class="col-lg-6">
-                        <button v-on:click="clearCartCondition()" class="btn btn-primary">Clear Conditions</button>
-                    </div>
-                </div>
-            </div>-->
-            <!--<div class="col-lg-3">
-                <div class="row">
-                    
-                </div>
-            </div>-->
-            <div class="col-lg-6">
-                <h2>CART</h2>
-                <table class="table">
-                    <thead>
+            <h2>CART</h2>
+            <table class="table">
+                <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -119,8 +49,8 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <table class="table">
+            </table>
+            <table class="table">
                     <tr>
                         <td>Items on Cart:</td>
                         <td>@{{itemCount}}</td>
@@ -137,9 +67,12 @@
                         <td>Total:</td>
                         <td>@{{ '$' + details.total.toFixed(2) }} (@{{details.cart_total_conditions_count}} conditions applied)</td>
                     </tr>
-                </table>
+            </table>
             </div>
         </div>
+        <button class="btn btn-danger btn-cart-detail">
+            <img src="{{asset('imgs/icon-cart.png')}}">
+        </button>
     </div>
 </div>
 <div class="row" id="wishlist">
