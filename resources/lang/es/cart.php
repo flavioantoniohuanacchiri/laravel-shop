@@ -6,6 +6,7 @@ return [
 		"id" => "Código de Producto",
 		"name" => "Nombre",
 		"price" => "Precio",
-		"qty" => "Cantidad"
+		"qty" => "Cantidad",
+		"add" => "Agregar"
 	]
 ];

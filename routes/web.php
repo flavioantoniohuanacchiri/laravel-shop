@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/','CartController@index')->name('cart.index');
 Route::get('/cart','CartController@index')->name('cart.index');
 Route::post('/cart','CartController@add')->name('cart.add');
 Route::post('/cart/conditions','CartController@addCondition')->name('cart.addCondition');
