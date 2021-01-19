@@ -1,41 +1,35 @@
 <!doctype html>
 <html lang="{{ config('app.locale') }}">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>Laravel</title>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
-    <!-- Styles -->
-    <style>
-        *{font-size: 14px;}
-        h2{font-size: 20px;}
-        .cart {
-            padding-bottom: 20px;
-            padding-top: 20px;
-        }
-    </style>
+    @include("includes.head")
 </head>
 <body>
 <div class="row" id="app">
-    <pre>
-    @php
-       
-    @endphp
-    </pre>
     <div class="container cart">
         <div class="row">
+            <template v-for="(value, index) in productos">
+                <div class="col-lg-3 item">
+                    <h2 class="title-peluche">A@{{value.id}} - @{{value.nombre}}</h2>
+                    <h5>s/. @{{value.price}}</h5>
+                    <div class="row">
+                        <img src="/imgs/peluche.jpg" class="img-peluche">
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" v-model="productos[index].qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
+                        </div>
+                        <div class="col-sm-8">
+                            <button v-on:click="addItem(value)" class="btn btn-primary" style="width: 100%;">{{trans("cart.item.add")}}</button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+        <!--<div class="row">
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-12">
                         <h2>{{trans("cart.add_item")}}</h2>
-                        <!--<p>(This is using custom database storage)</p>-->
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="form-group form-group-sm">
@@ -96,7 +90,7 @@
                         <button v-on:click="clearCartCondition()" class="btn btn-primary">{{trans("cart.clear_conditions")}}</button>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!--<div class="col-lg-3">
                 <div class="row">
                     
@@ -222,226 +216,15 @@
         </div>
     </div>
 </div>
-<script
-        src="https://code.jquery.com/jquery-3.2.1.min.js"
-        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-<script src="https://unpkg.com/vue"></script>
-<script src="https://cdn.jsdelivr.net/vue.resource/1.3.1/vue-resource.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="{{ asset('js/vue.js') }}"></script>
+<script src="{{ asset('js/vue-resource.min.js') }}"></script>
+<script src="{{ asset('js/tether.min.js') }}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script>
-    (function($) {
-
-        var _token = '<?php echo csrf_token() ?>';
-
-        $(document).ready(function() {
-
-            var app = new Vue({
-                el: '#app',
-                data: {
-                    details: {
-                        sub_total: 0,
-                        total: 0,
-                        total_quantity: 0
-                    },
-                    itemCount: 0,
-                    items: [],
-                    item: {
-                        id: '',
-                        name: '',
-                        price: 0.00,
-                        qty: 1
-                    },
-                    cartCondition: {
-                        name: '',
-                        type: '',
-                        target: '',
-                        value: '',
-                        attributes: {
-                            description: 'Value Added Tax'
-                        }
-                    },
-
-                    options: {
-                        target: [
-                            {label: 'Apply to SubTotal', key: 'subtotal'},
-                            {label: 'Apply to Total', key: 'total'}
-                        ]
-                    }
-                },
-                mounted:function(){
-                    this.loadItems();
-                },
-                methods: {
-                    addItem: function() {
-
-                        var _this = this;
-
-                        this.$http.post('/cart',{
-                            _token:_token,
-                            id:_this.item.id,
-                            name:_this.item.name,
-                            price:_this.item.price,
-                            qty:_this.item.qty
-                        }).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    addCartCondition: function() {
-
-                        var _this = this;
-
-                        this.$http.post('/cart/conditions',{
-                            _token:_token,
-                            name:_this.cartCondition.name,
-                            type:_this.cartCondition.type,
-                            target:_this.cartCondition.target,
-                            value:_this.cartCondition.value,
-                        }).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    clearCartCondition: function() {
-
-                        var _this = this;
-
-                        this.$http.delete('/cart/conditions?_token=' + _token).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    removeItem: function(id) {
-
-                        var _this = this;
-
-                        this.$http.delete('/cart/'+id,{
-                            params: {
-                                _token:_token
-                            }
-                        }).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    loadItems: function() {
-
-                        var _this = this;
-
-                        this.$http.get('/cart',{
-                            params: {
-                                limit:10
-                            }
-                        }).then(function(success) {
-                            _this.items = success.body.data;
-                            _this.itemCount = success.body.data.length;
-                            _this.loadCartDetails();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    loadCartDetails: function() {
-
-                        var _this = this;
-
-                        this.$http.get('/cart/details').then(function(success) {
-                            _this.details = success.body.data;
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    }
-                }
-            });
-
-            var wishlist = new Vue({
-                el: '#wishlist',
-                data: {
-                    details: {
-                        sub_total: 0,
-                        total: 0,
-                        total_quantity: 0
-                    },
-                    itemCount: 0,
-                    items: [],
-                    item: {
-                        id: '',
-                        name: '',
-                        price: 0.00,
-                        qty: 1
-                    }
-                },
-                mounted:function(){
-                    this.loadItems();
-                },
-                methods: {
-                    addItem: function() {
-
-                        var _this = this;
-
-                        this.$http.post('/wishlist',{
-                            _token:_token,
-                            id:_this.item.id,
-                            name:_this.item.name,
-                            price:_this.item.price,
-                            qty:_this.item.qty
-                        }).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    removeItem: function(id) {
-
-                        var _this = this;
-
-                        this.$http.delete('/wishlist/'+id,{
-                            params: {
-                                _token:_token
-                            }
-                        }).then(function(success) {
-                            _this.loadItems();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    loadItems: function() {
-
-                        var _this = this;
-
-                        this.$http.get('/wishlist',{
-                            params: {
-                                limit:10
-                            }
-                        }).then(function(success) {
-                            _this.items = success.body.data;
-                            _this.itemCount = success.body.data.length;
-                            _this.loadCartDetails();
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    },
-                    loadCartDetails: function() {
-
-                        var _this = this;
-
-                        this.$http.get('/wishlist/details').then(function(success) {
-                            _this.details = success.body.data;
-                        }, function(error) {
-                            console.log(error);
-                        });
-                    }
-                }
-            });
-
-        });
-
-    })(jQuery);
+    var _token = "{{ csrf_token() }}";
 </script>
+<script type="text/javascript" src="{{asset('js/cart/app.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/cart/wishlist.js')}}"></script>
 </body>
 </html>

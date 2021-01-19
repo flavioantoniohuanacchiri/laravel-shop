@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use Darryldecode\Cart\CartCondition;
+use App\Master\Models\Producto;
 
 class CartController extends Controller
 {
@@ -20,6 +21,21 @@ class CartController extends Controller
         if(request()->ajax())
         {
             $items = [];
+            $sedeId = 30;
+            $productos = Producto::select(["id", "nombre", "estado", "tipo_producto_id"])
+                ->with([
+                    "categoria" => function($q) {
+                        $q->select("id", "nombre");
+                    },
+                    "itemSede" => function($q) use ($sedeId) {
+                        $q->select("id", "producto_id", "precio");
+                        $q->where("sede_id", $sedeId);
+                    }
+                ])->whereHas("itemSede", function($q) use ($sedeId) {
+                    $q->where("sede_id", $sedeId);
+                })->where("estado", 1)
+                ->orderBy("nombre", "ASC")
+                ->get();
 
             \Cart::session($userId)->getContent()->each(function($item) use (&$items)
             {
@@ -29,11 +45,10 @@ class CartController extends Controller
             return response(array(
                 'success' => true,
                 'data' => $items,
+                'productos' => $productos,
                 'message' => 'cart get items success'
             ),200,[]);
-        }
-        else
-        {
+        } else {
             return view('cart');
         }
     }
@@ -139,10 +154,8 @@ class CartController extends Controller
     public function details()
     {
         $userId = 1; // get this from session or wherever it came from
-
         // get subtotal applied condition amount
         $conditions = \Cart::session($userId)->getConditions();
-
 
         // get conditions that are applied to cart sub totals
         $subTotalConditions = $conditions->filter(function (CartCondition $condition) {
@@ -155,7 +168,6 @@ class CartController extends Controller
                 'value' => $c->getValue(),
             ];
         });
-
         // get conditions that are applied to cart totals
         $totalConditions = $conditions->filter(function (CartCondition $condition) {
             return $condition->getTarget() == 'total';
