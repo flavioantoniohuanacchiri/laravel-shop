@@ -23,12 +23,8 @@ return [
 	"add_wishlist_item" => "Añadir productos a Lista de deseos",
 	"wishlist" => "Lista de deseos",
 	"qty" => "Cantidad",
-	"add" => "Agregar"
-
-
-		"qty" => "Cantidad",
-		"add" => "Agregar",
-		"success" => "Se agregó el producto exitosamente"
-	]
+	"add" => "Agregar",
+	"success" => "Se agregó el producto exitosamente"
+	
 
 ];

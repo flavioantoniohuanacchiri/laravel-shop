@@ -52,7 +52,7 @@
 			        <input type="submit" name="submit" value="Pago con Paypal"/>
 
 			        <button >
-            			<a style="color: black;" href="/">Seguir Comprando</a>
+            			<a style="color: black; text-decoration: none;" href="/">Seguir Comprando</a>
         			</button>
 
 			        <template v-for="(item, index) in items">

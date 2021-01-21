@@ -8,7 +8,7 @@
                     <div class="row">
                         <img src="/imgs/peluche.jpg" class="img-peluche">
                     </div>
-                    <div class="row cart-options">
+                    <div class="row">
                         <div class="col-sm-4">
                             <input type="text" v-model="productos[index].qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
                         </div>

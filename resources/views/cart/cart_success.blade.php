@@ -1,4 +1,4 @@
-@extends("layouts.cart1")
+@extends("layouts.cart")
 @section("content_app")
 <div class="row">
     <div class="col-lg-12" style="text-align: center; font-size: 35px" >
