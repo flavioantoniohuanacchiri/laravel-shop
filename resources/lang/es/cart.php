@@ -22,10 +22,8 @@ return [
 	"total_qty" => "Cantidad total",
 	"conditions_applied" => "condiciones aplicadas",
 	"add_wishlist_item" => "Añadir productos a Lista de deseos",
-	"wishlist" => "Lista de deseos"
-
-		"qty" => "Cantidad",
-		"add" => "Agregar"
-}
+	"wishlist" => "Lista de deseos",
+	"qty" => "Cantidad",
+	"add" => "Agregar"
 
 ];
