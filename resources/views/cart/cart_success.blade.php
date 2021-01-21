@@ -1,14 +1,14 @@
-@extends("layouts.cart")
+@extends("layouts.cart1")
 @section("content_app")
 <div class="row">
-    <div class="col-lg-12" style="text-align: center; font-size: 55px">
+    <div class="col-lg-12" style="text-align: center; font-size: 35px" >
     	Compra Exitosa
-        <h1 style="text-align: center;" >      
+        <h5 style="text-align: center;" >      
         	<?php  
-				$paymentId=$_GET['paymentId'];
-				echo "<p>Id del Pago : $paymentId";
+				$payerId=$_GET['payerId'];
+				echo "<p>Id del Pago : $payerId";
 			  ?>
-		</h1>
+		</h5>
     </div>
 </div>
 @endsection

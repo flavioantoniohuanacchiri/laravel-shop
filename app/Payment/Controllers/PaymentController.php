@@ -20,7 +20,7 @@ class PaymentController
 
 		// Set some example data for the payment.
 		$currency = 'GBP';
-		$amountPayable = 10.00;
+		$amountPayable = '$total';
 		$invoiceNumber = uniqid();
 
 		$amount = new Amount();

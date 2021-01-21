@@ -129,7 +129,7 @@ class CartController extends Controller
     {
         $userId = 1; // get this from session or wherever it came from
 
-        \Cart::session($userId)->clearCartConditions();
+        \Cart::session($userId)->delete();
 
         return response(array(
             'success' => true,
