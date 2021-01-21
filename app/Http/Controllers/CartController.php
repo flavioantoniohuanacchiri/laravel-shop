@@ -49,7 +49,7 @@ class CartController extends Controller
                 'message' => 'cart get items success'
             ),200,[]);
         } else {
-            return view('cart');
+            return view('cart.index');
         }
     }
 
@@ -180,16 +180,19 @@ class CartController extends Controller
             ];
         });
 
-        return response(array(
-            'success' => true,
-            'data' => array(
-                'total_quantity' => \Cart::session($userId)->getTotalQuantity(),
-                'sub_total' => \Cart::session($userId)->getSubTotal(),
-                'total' => \Cart::session($userId)->getTotal(),
-                'cart_sub_total_conditions_count' => $subTotalConditions->count(),
-                'cart_total_conditions_count' => $totalConditions->count(),
-            ),
-            'message' => "Get cart details success."
-        ),200,[]);
+        if (request()->ajax()) {
+            return response(array(
+                'success' => true,
+                'data' => array(
+                    'total_quantity' => \Cart::session($userId)->getTotalQuantity(),
+                    'sub_total' => \Cart::session($userId)->getSubTotal(),
+                    'total' => \Cart::session($userId)->getTotal(),
+                    'cart_sub_total_conditions_count' => $subTotalConditions->count(),
+                    'cart_total_conditions_count' => $totalConditions->count(),
+                ),
+                'message' => "Get cart details success."
+            ),200,[]);
+        }
+        return view("cart.cart_detail");
     }
 }

@@ -22,6 +22,10 @@ Route::delete('/cart/conditions','CartController@clearCartConditions')->name('ca
 Route::get('/cart/details','CartController@details')->name('cart.details');
 Route::delete('/cart/{id}','CartController@delete')->name('cart.delete');
 
+Route::post("/payment-paypal", "\App\Payment\Controllers\PaymentController@paypal");
+Route::get("/payment-paypal/cancel", "\App\Payment\Controllers\PaymentController@cancelPaypal");
+Route::get("/payment-paypal/success", "\App\Payment\Controllers\PaymentController@successBuy");
+
 Route::group(['prefix' => 'wishlist'],function()
 {
     Route::get('/','WishListController@index')->name('wishlist.index');
