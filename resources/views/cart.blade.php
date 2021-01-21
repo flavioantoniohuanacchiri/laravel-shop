@@ -95,11 +95,17 @@
                 <div class="row">
                     
                 </div>
-            </div>-->
+            </div>
             <div class="col-lg-6">
                 <h2>{{trans("cart.clear_conditions")}}</h2>
                 <table class="table">
-                    <thead>
+                    <thead>-->
+
+        <div class="row">
+            <div class="col-lg-6">
+            <h2>CART</h2>
+            <table class="table">
+                <thead>
                     <tr>
                         <th>{{trans("cart.item.id")}}</th>
                         <th>{{trans("cart.item.name")}}</th>
@@ -119,8 +125,8 @@
                         </td>
                     </tr>
                     </tbody>
-                </table>
-                <table class="table">
+            </table>
+            <table class="table">
                     <tr>
                         <td>{{trans('cart.items_cart')}}:</td>
                         <td>@{{itemCount}}</td>
@@ -137,9 +143,12 @@
                         <td>Total:</td>
                         <td>@{{ '$' + details.total.toFixed(2) }} (@{{details.cart_total_conditions_count}} {{trans('cart.conditions_applied')}})</td>
                     </tr>
-                </table>
+            </table>
             </div>
         </div>
+        <button class="btn btn-danger btn-cart-detail">
+            <img src="{{asset('imgs/icon-cart.png')}}">
+        </button>
     </div>
 </div>
 <div class="row" id="wishlist">
