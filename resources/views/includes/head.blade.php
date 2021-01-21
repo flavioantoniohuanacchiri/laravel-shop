@@ -6,6 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.all.min.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css')}}">
 <!-- Styles -->
 <style>
     *{font-size: 14px;}

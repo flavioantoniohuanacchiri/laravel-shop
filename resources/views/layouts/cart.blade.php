@@ -92,6 +92,8 @@
     </div>
 </div>-->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ asset('js/sweetalert2.min.js')}}"></script>
+<script src="{{ asset('js/page.js') }}"></script>
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="{{ asset('js/vue-resource.min.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>

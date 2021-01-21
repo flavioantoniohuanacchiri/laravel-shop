@@ -7,6 +7,7 @@ return [
 		"name" => "Nombre",
 		"price" => "Precio",
 		"qty" => "Cantidad",
-		"add" => "Agregar"
+		"add" => "Agregar",
+		"success" => "Se agregó el producto exitosamente"
 	]
 ];

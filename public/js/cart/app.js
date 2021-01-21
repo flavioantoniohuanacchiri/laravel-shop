@@ -3,8 +3,8 @@ var app = new Vue({
     data: {
         details: {
             sub_total: 0,
-                        total: 0,
-                        total_quantity: 0
+            total: 0,
+            total_quantity: 0
         },
         itemCount: 0,
         items: [],
@@ -47,6 +47,7 @@ var app = new Vue({
                 //qty:_this.item.qty
             }).then(function(success) {
                 _this.loadItems();
+                Page.messages.success(success.message);
             }, function(error) {
                 console.log(error);
             });
