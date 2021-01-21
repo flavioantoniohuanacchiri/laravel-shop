@@ -26,6 +26,8 @@ Route::post("/payment-paypal", "\App\Payment\Controllers\PaymentController@paypa
 Route::get("/payment-paypal/cancel", "\App\Payment\Controllers\PaymentController@cancelPaypal");
 Route::get("/payment-paypal/success", "\App\Payment\Controllers\PaymentController@successBuy");
 
+Route::post("/payment-pagoefectivo", "\App\Payment\Controllers\PaymentController@pagoEfectivo");
+
 Route::group(['prefix' => 'wishlist'],function()
 {
     Route::get('/','WishListController@index')->name('wishlist.index');

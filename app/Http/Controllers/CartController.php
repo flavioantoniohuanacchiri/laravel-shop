@@ -78,7 +78,7 @@ class CartController extends Controller
         return response(array(
             'success' => true,
             'data' => $item,
-            'message' => "item added."
+            'message' => trans("cart.item.success")
         ),201,[]);
     }
 

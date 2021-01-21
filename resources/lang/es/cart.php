@@ -6,7 +6,6 @@ return [
 		"id" => "Código de Producto",
 		"name" => "Nombre",
 		"price" => "Precio",
-
 		"qty" => "Cantidad"
 	],
 	"add_conditions" => "Agregar Condiciones",
@@ -25,5 +24,11 @@ return [
 	"wishlist" => "Lista de deseos",
 	"qty" => "Cantidad",
 	"add" => "Agregar"
+
+
+		"qty" => "Cantidad",
+		"add" => "Agregar",
+		"success" => "Se agregó el producto exitosamente"
+	]
 
 ];
