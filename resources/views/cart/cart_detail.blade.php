@@ -50,7 +50,9 @@
             		<input type="hidden" name="item_number" value="123456" / >
 			        <input type="hidden" name="amount" :value="details.total" / >
 			        <input type="submit" name="submit" value="Pago con Paypal"/>
+			        <button >
+            			<a style="color: black;" href="/">Seguir Comprando</a>
+        			</button>
 			    </form>
-            </div>
-	</div>
+            
 @endsection

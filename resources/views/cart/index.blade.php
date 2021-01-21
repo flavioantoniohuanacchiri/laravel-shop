@@ -19,7 +19,8 @@
                 </div>
             </template>
         </div>
-        <button class="btn btn-danger btn-cart-detail">
+        <button class="btn btn-danger btn-cart-detail" >
+            <a style="color: #ffff;" href="/cart/details">Ir a Carrito</a>
             <img src="{{asset('imgs/icon-cart.png')}}">
         </button>
 @endsection
