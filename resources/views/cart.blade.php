@@ -5,7 +5,14 @@
 </head>
 <body>
 <div class="row" id="app">
-    <div class="container cart">
+    <nav>
+        <div class="container">
+            <ul>
+                <li>Ver Carrito</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container cart" style="margin-top: 25px;">
         <div class="row">
             <template v-for="(value, index) in productos">
                 <div class="col-lg-3 item">

@@ -33,4 +33,22 @@
     .btn-cart-detail img{
         max-width: 23px;
     }
+    nav {
+        width: 100%;
+        position: fixed;
+        height: 40px;
+        background-color: #7575ad;
+        color: #fff;
+        padding: 10px;
+        left: 0px;
+        z-index: 9999;
+    }
+    nav ul li {
+        display: inline-flex;
+    }
+    nav ul li a{
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+    }
 </style>
