@@ -30,7 +30,6 @@ var app = new Vue({
                 {label: 'Apply to Total', key: 'total'}
             ]
         }
-        paymentID: 0
     },
     mounted:function(){
         this.loadItems();
