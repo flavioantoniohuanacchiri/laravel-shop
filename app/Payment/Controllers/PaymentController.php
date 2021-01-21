@@ -7,10 +7,16 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use App\Payment\Services\PaymentPaypal;
 
+use App\Handlers\Interfaces\PedidoEntityInterface;
+
 class PaymentController
 {
-	public function paypal()
-	{
+	public function paypal(
+		PedidoEntityInterface $pedidoEntityInterface
+	) {
+
+		$resultPedido = $pedidoEntityInterface->create(request()->all());
+		//print_r($resultPedido); dd();
 		$objPaypal = new PaymentPaypal;
 		$objPaypal->init();
 		//print_r(request()->all());
@@ -19,8 +25,8 @@ class PaymentController
 		$payer->setPaymentMethod('paypal');
 
 		// Set some example data for the payment.
-		$currency = 'GBP';
-		$amountPayable = 10.00;
+		$currency = 'USD';
+		$amountPayable = request("amount");
 		$invoiceNumber = uniqid();
 
 		$amount = new Amount();
@@ -52,6 +58,11 @@ class PaymentController
 		exit(1);
 	}
 
+	public function pagoEfectivo()
+	{
+
+	}
+
 	public function cancelPaypal()
 	{
 		return view("cart.cart_detail");
@@ -59,6 +70,7 @@ class PaymentController
 
 	public function successBuy()
 	{
+		\Cart::clear();
 		return view("cart.cart_success");
 	}
 }

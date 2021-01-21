@@ -47,7 +47,7 @@ var app = new Vue({
                 //qty:_this.item.qty
             }).then(function(success) {
                 _this.loadItems();
-                Page.messages.success(success.message);
+                Page.messages.success(success.data.message);
             }, function(error) {
                 console.log(error);
             });

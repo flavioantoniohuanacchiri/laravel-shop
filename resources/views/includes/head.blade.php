@@ -4,7 +4,7 @@
 <title>Laravel</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.all.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css')}}">
 <!-- Styles -->
@@ -26,6 +26,7 @@
     }
     .item{
     	margin: 10px auto;
+        height: 335px;
     }
     .btn-cart-detail{
         border-radius: 30px;
@@ -46,10 +47,20 @@
     }
     nav ul li {
         display: inline-flex;
+        vertical-align: middle;
     }
     nav ul li a{
         color: #fff;
         font-size: 14px;
         font-weight: 700;
+    }
+    .separador{
+        border: solid 2px #fff;
+        height: 20px;
+        margin: 0px 5px;
+    }
+    .cart-options{
+        position: absolute;
+        bottom: 5px;
     }
 </style>

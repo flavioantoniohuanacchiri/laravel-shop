@@ -9,6 +9,7 @@
         <div class="container">
             <ul>
                 <li><a href="/">Inicio</a></li>
+                <li class="separador"></li>
                 <li><a href="/cart/details">Ver Carrito</a></li>
             </ul>
         </div>
@@ -102,6 +103,6 @@
     var _token = "{{ csrf_token() }}";
 </script>
 <script type="text/javascript" src="{{asset('js/cart/app.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/cart/wishlist.js')}}"></script>
+<!--<script type="text/javascript" src="{{asset('js/cart/wishlist.js')}}"></script>-->
 </body>
 </html>
