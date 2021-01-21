@@ -6,7 +6,7 @@
         <h5 style="text-align: center;" >      
         	<?php  
 				$payerId=$_GET['payerId'];
-				echo "<p>Id del Pago : $payerId";
+				echo "<p>El pedido: $payerId a sido generado con éxito.";
 			  ?>
 		</h5>
     </div>
