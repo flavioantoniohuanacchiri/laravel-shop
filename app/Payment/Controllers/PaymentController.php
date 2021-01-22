@@ -25,10 +25,8 @@ class PaymentController
 		$payer->setPaymentMethod('paypal');
 
 		// Set some example data for the payment.
-
 		$currency = 'USD';
 		$amountPayable = request("amount");
-
 		$invoiceNumber = uniqid();
 
 		$amount = new Amount();
