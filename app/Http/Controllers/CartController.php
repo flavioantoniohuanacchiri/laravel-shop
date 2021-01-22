@@ -136,6 +136,8 @@ class CartController extends Controller
             'data' => [],
             'message' => "cart conditions cleared."
         ),200,[]);
+
+         //$cart->destroy();
     }
 
     public function delete($id)

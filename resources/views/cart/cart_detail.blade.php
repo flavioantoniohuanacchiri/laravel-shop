@@ -20,7 +20,7 @@
 		                        <td>@{{ item.quantity }}</td>
 		                        <td>@{{ item.price }}</td>
 		                        <td>
-		                            <button v-on:click="removeItem(item.id)" class="btn btn-sm btn-danger">remove</button>
+		                            <button v-on:click="removeItem(item.id)" class="btn btn-sm btn-danger" id="eliminar">remove</button>
 		                        </td>
 		                    </tr>
 		                    </tbody>
@@ -49,18 +49,15 @@
             		<input type="hidden" name="_token" value="{{ csrf_token() }}">
             		<input type="hidden" name="item_number" :value="details.total_quantity" / >
 			        <input type="hidden" name="amount" :value="details.total" / >
-			        <input type="submit" name="submit" value="Pago con Paypal"/>
-
-			        <button >
-            			<a style="color: black; text-decoration: none;" href="/">Seguir Comprando</a>
-        			</button>
-
+			        <input type="submit" name="submit" id="pagar" value="Pago con Paypal" />
 			        <template v-for="(item, index) in items">
 			        	<input type="hidden" name="producto_id[]" :value="item.id">
 			        	<input type="hidden" name="cantidad[]" :value="item.quantity">
 			        	<input type="hidden" name="price[]" :value="item.price">
 			        </template>
-
 			    </form>
+			    <button >
+            		<a style="color: black; text-decoration: none;" href="/">Seguir Comprando</a>
+        		</button>
             
 @endsection

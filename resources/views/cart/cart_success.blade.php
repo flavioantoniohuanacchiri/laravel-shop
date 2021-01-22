@@ -5,8 +5,8 @@
     	Compra Exitosa
         <h5 style="text-align: center;" >      
         	<?php  
-				$payerId=$_GET['payerId'];
-				echo "<p>El pedido: $payerId a sido generado con éxito.";
+				$PayerID=$_GET['PayerID'];
+				echo "<p>El pedido: $PayerID a sido generado con éxito.";
 			  ?>
 		</h5>
     </div>

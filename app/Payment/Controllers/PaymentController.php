@@ -7,6 +7,7 @@ use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use App\Payment\Services\PaymentPaypal;
 
+
 use App\Handlers\Interfaces\PedidoEntityInterface;
 
 class PaymentController
@@ -68,9 +69,14 @@ class PaymentController
 		return view("cart.cart_detail");
 	}
 
+	protected $cart_contents = array();
+
 	public function successBuy()
 	{
-		\Cart::clear();
+		$userId = 1;
+
+        \Cart::session($userId)->clear();
+		
 		return view("cart.cart_success");
 	}
 }

@@ -7,6 +7,7 @@ use DB;
 
 class PedidoEntityRepository implements PedidoEntityInterface
 {
+	
 	public function create($entity = [])
 	{
 		DB::beginTransaction();
