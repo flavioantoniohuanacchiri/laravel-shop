@@ -141,7 +141,7 @@ class CartController extends Controller
     public function delete($id)
     {
         $userId = 1; // get this from session or wherever it came from
-
+       
         \Cart::session($userId)->remove($id);
 
         return response(array(
@@ -149,12 +149,19 @@ class CartController extends Controller
             'data' => $id,
             'message' => "cart item {$id} removed."
         ),200,[]);
+
+       
     }
 
     public function details()
     {
         $userId = 1; // get this from session or wherever it came from
         // get subtotal applied condition amount
+        if(\Cart::session($userId)->getTotalQuantity()==0){
+            //return view("cart.index");
+            return redirect('/cart');
+        }
+
         $conditions = \Cart::session($userId)->getConditions();
 
         // get conditions that are applied to cart sub totals
