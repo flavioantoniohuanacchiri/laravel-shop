@@ -17,7 +17,6 @@ class CartController extends Controller
     public function index()
     {
         $userId = 1; // get this from session or wherever it came from
-
         if(request()->ajax())
         {
             $items = [];
@@ -143,21 +142,26 @@ class CartController extends Controller
         $userId = 1; // get this from session or wherever it came from
 
         \Cart::session($userId)->remove($id);
-
+        
         return response(array(
             'success' => true,
             'data' => $id,
             'message' => "cart item {$id} removed."
-        ),200,[]);
+        ),200,[]);       
     }
 
     public function details()
     {
         $userId = 1; // get this from session or wherever it came from
+
+        //Valido que el carro tengo productos, sino lo direcciono al inicio para que agrege productos      
+        if(\Cart::session($userId)->getTotalQuantity() == 0)
+            return redirect('/cart');
+
         // get subtotal applied condition amount
         $conditions = \Cart::session($userId)->getConditions();
 
-        // get conditions that are applied to cart sub totals
+                // get conditions that are applied to cart sub totals
         $subTotalConditions = $conditions->filter(function (CartCondition $condition) {
             return $condition->getTarget() == 'subtotal';
         })->map(function(CartCondition $c) use ($userId) {

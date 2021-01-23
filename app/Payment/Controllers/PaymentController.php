@@ -6,7 +6,7 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use App\Payment\Services\PaymentPaypal;
-
+use App\Sales\Models\Pedido;
 use App\Handlers\Interfaces\PedidoEntityInterface;
 
 class PaymentController
@@ -14,8 +14,8 @@ class PaymentController
 	public function paypal(
 		PedidoEntityInterface $pedidoEntityInterface
 	) {
-
 		$resultPedido = $pedidoEntityInterface->create(request()->all());
+		//dd($resultPedido['id']);
 		//print_r($resultPedido); dd();
 		$objPaypal = new PaymentPaypal;
 		$objPaypal->init();
@@ -47,6 +47,11 @@ class PaymentController
 		    ->setPayer($payer)
 		    ->setTransactions([$transaction])
 		    ->setRedirectUrls($redirectUrls);
+
+		//dd($payment);
+		$pedido = Pedido::findorfail($resultPedido['id']);
+		$pedido->codigo = $invoiceNumber;
+		$pedido->save();
 
 		try {
 		    $payment->create($objPaypal->getApi());
