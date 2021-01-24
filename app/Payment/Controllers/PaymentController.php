@@ -18,7 +18,7 @@ class PaymentController
 	public function paypal(
 		PedidoEntityInterface $pedidoEntityInterface
 	) {
-		
+
 		$userId = 1;
 		if(\Cart::session($userId)->getTotalQuantity() == 0)
 		return redirect('/cart');
@@ -67,7 +67,13 @@ class PaymentController
 		$pedido->save();
 
 		$userId = 1;
-		\Cart::session($userId)->clear();
+
+		session()->put('userId', $userId);
+		session()->put('invoiceNumber', $invoiceNumber);
+		session()->put('total', $amountPayable);
+		session()->put('currency', $currency);
+		session()->save();
+		$codigo = request()->session()->get('invoiceNumber');
 
 		header('location:' . $payment->getApprovalLink());
 		exit(1);
@@ -85,12 +91,22 @@ class PaymentController
 
 	public function successBuy()
 	{
-		$id = Pedido::select(DB::RAW("MAX(id) as id"))->first();
-		$codigo = Pedido::select('codigo')->where('id', '=', $id['id'])->first();
+		$userId = session()->get('userId');
+		$invoiceNumber = session()->get('invoiceNumber');
+		$total = session()->get('total');
+		$currency = session()->get('currency');
+
+		\Cart::session($userId)->getContent()->each(function($item) use (&$items)
+		{
+			$items[]=$item;
+		});
+
 		\Cart::clear();
+		\Cart::session($userId)->clear();
 		
 		return view("cart.cart_success", [
-			'invoiceNumber' => $codigo['codigo']
+			'invoiceNumber' => $invoiceNumber
 			]);
+
 	}
 }

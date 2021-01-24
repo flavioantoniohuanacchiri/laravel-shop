@@ -5,6 +5,7 @@
     <div class="card-body">
       <h5 class="card-title">Código de Venta</h5>
       <p class="card-text"><b>{{$invoiceNumber}}</b></p>
+      
     </div>
  </div>
  <div>
