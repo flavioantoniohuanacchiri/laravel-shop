@@ -46,7 +46,7 @@ class CartController extends Controller
                 'success' => true,
                 'data' => $items,
                 'productos' => $productos,
-                'message' => 'cart get items success'
+                'message' => 'cart get items success Index'
             ),200,[]);
         } else {
             return view('cart.index');
@@ -194,5 +194,35 @@ class CartController extends Controller
             ),200,[]);
         }
         return view("cart.cart_detail");
+    }
+
+    public function success()
+    {
+        $userId = 1; // get this from session or wherever it came from
+
+        if(request()->ajax())
+        {
+            $items = [];
+            $sedeId = 30;
+            $productos = [];
+
+            \Cart::session($userId)->getContent()->each(function($item) use (&$items)
+            {
+                $items[] = $item;
+            });
+
+            foreach ($items as $item) {
+                \Cart::session($userId)->remove($item['id']);
+            }
+
+            return response(array(
+                'success' => true,
+                'data' => $items,
+                'productos' => $productos,
+                'message' => 'cart get items success Paypal'
+            ),200,[]);
+        } else {
+            return view('cart.cart_success');
+        }
     }
 }

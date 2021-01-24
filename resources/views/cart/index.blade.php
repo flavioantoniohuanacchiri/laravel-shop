@@ -13,7 +13,8 @@
                             <input type="text" v-model="productos[index].qty" class="form-control" placeholder="{{trans('cart.item.qty')}}">
                         </div>
                         <div class="col-sm-8">
-                            <button v-on:click="addItem(value)" class="btn btn-primary" style="width: 100%;">{{trans("cart.item.add")}}</button>
+                            <button v-on:click="addItem(value)" class="btn btn-primary">{{trans("cart.item.add")}}</button>
+                            <a href="/cart/details" class="btn btn-primary"><i class="fas fa-shopping-cart"></i></a>
                         </div>
                     </div>
                 </div>

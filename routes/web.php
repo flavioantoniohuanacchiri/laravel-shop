@@ -25,6 +25,7 @@ Route::delete('/cart/{id}','CartController@delete')->name('cart.delete');
 Route::post("/payment-paypal", "\App\Payment\Controllers\PaymentController@paypal");
 Route::get("/payment-paypal/cancel", "\App\Payment\Controllers\PaymentController@cancelPaypal");
 Route::get("/payment-paypal/success", "\App\Payment\Controllers\PaymentController@successBuy");
+Route::get('/success','SuccessController@index')->name('success.index');
 
 Route::post("/payment-pagoefectivo", "\App\Payment\Controllers\PaymentController@pagoEfectivo");
 

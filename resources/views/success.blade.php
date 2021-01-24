@@ -1,4 +1,4 @@
-@extends("layouts.cart")
+@extends("layouts.success")
 @section("content_app")
     <div class="row">
             <div class="col-lg-6">

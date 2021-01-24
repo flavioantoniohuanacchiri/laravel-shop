@@ -71,6 +71,10 @@ class PaymentController
 	public function successBuy()
 	{
 		\Cart::clear();
+
+
 		return view("cart.cart_success");
+
+
 	}
 }
