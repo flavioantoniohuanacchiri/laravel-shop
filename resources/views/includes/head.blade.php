@@ -4,7 +4,7 @@
 <title>Laravel</title>
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"  crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/fontawesome.all.min.css')}}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/sweetalert2.min.css')}}">
 <!-- Styles -->
@@ -64,3 +64,5 @@
         bottom: 5px;
     }
 </style>
+
+<script src="https://kit.fontawesome.com/42ec8d4b4e.js" crossorigin="anonymous"></script>

@@ -155,6 +155,10 @@ class CartController extends Controller
     {
         $userId = 1; // get this from session or wherever it came from
         // get subtotal applied condition amount
+        
+        if(\Cart::session($userId)->getTotalQuantity()==0)
+        return redirect('/cart');
+
         $conditions = \Cart::session($userId)->getConditions();
 
         // get conditions that are applied to cart sub totals
