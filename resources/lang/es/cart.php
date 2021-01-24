@@ -8,6 +8,9 @@ return [
 		"price" => "Precio",
 		"qty" => "Cantidad",
 		"add" => "Agregar",
-		"success" => "Se agregó el producto exitosamente"
+		"success" => "Se agregó el producto exitosamente",
+		"remove" => "Eliminar",
+		"action" => "Acción",
+		"itemsOnCart" => "Productos en Carrito"
 	]
 ];

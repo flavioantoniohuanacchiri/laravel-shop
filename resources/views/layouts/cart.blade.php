@@ -3,21 +3,27 @@
 <head>
     @include("includes.head")
 </head>
-<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark card h-100">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cart/details">Ver Carrito</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 <div class="row" id="app">
-    <nav>
-        <div class="container">
-            <ul>
-                <li><a href="/">Inicio</a></li>
-                <li class="separador"></li>
-                <li><a href="/cart/details">Ver Carrito</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container cart" style="margin-top: 25px;">
+    <div class="container cart card h-100" style="margin-top: 25px;">
         @yield("content_app")
     </div>
 </div>
+<body>
 <!--<div class="row" id="wishlist">
     <div class="container cart">
         <div class="row">
@@ -98,7 +104,8 @@
 <script src="{{ asset('js/vue.js') }}"></script>
 <script src="{{ asset('js/vue-resource.min.js') }}"></script>
 <script src="{{ asset('js/tether.min.js') }}" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<!--<script src="{{ asset('js/bootstrap.min.js') }}" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 <script>
     var _token = "{{ csrf_token() }}";
 </script>
