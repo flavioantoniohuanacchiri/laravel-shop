@@ -67,6 +67,7 @@ class PaymentController
 		$pedido->save();
 
 		$userId = 1;
+		//\Cart::session($userId)->clear();
 
 		session()->put('userId', $userId);
 		session()->put('invoiceNumber', $invoiceNumber);
@@ -74,6 +75,8 @@ class PaymentController
 		session()->put('currency', $currency);
 		session()->save();
 		$codigo = request()->session()->get('invoiceNumber');
+		//dd($codigo);
+
 
 		header('location:' . $payment->getApprovalLink());
 		exit(1);
@@ -96,16 +99,20 @@ class PaymentController
 		$total = session()->get('total');
 		$currency = session()->get('currency');
 
-		\Cart::session($userId)->getContent()->each(function($item) use (&$items)
-		{
-			$items[]=$item;
-		});
+        \Cart::session($userId)->getContent()->each(function($item) use (&$items)
+        {
+            $items[] = $item;
+        });
 
-		\Cart::clear();
+ 		\Cart::clear();
 		\Cart::session($userId)->clear();
 		
+		
 		return view("cart.cart_success", [
-			'invoiceNumber' => $invoiceNumber
+			'invoiceNumber' => $invoiceNumber,
+			'items' => $items,
+			'total' => $total,
+			'currency' => $currency,
 			]);
 
 	}
