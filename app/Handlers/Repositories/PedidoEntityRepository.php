@@ -34,7 +34,7 @@ class PedidoEntityRepository implements PedidoEntityInterface
 
 			}
 			DB::commit();
-			return ["rst" => 1, "msj" => "Venta Registrada"];
+			return ["rst" => 1, "id" => $obj['id'],  "msj" => "Venta Registrada"];
 		} catch (Exception $e) {
 			return ["rst" => 2, "msj" => "Error: ".$e->getMessage()];
 		}
