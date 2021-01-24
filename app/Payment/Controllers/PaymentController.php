@@ -6,16 +6,23 @@ use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 use App\Payment\Services\PaymentPaypal;
+
 use App\Sales\Models\Pedido;
 use App\Handlers\Interfaces\PedidoEntityInterface;
+use DB;
 
 class PaymentController
 {
+	public $invoiceNumber;
+
 	public function paypal(
 		PedidoEntityInterface $pedidoEntityInterface
 	) {
+		$userId = 1;
+		if(\Cart::session($userId)->getTotalQuantity() == 0)
+            return redirect('/cart');
+
 		$resultPedido = $pedidoEntityInterface->create(request()->all());
-		//dd($resultPedido['id']);
 		//print_r($resultPedido); dd();
 		$objPaypal = new PaymentPaypal;
 		$objPaypal->init();
@@ -48,18 +55,20 @@ class PaymentController
 		    ->setTransactions([$transaction])
 		    ->setRedirectUrls($redirectUrls);
 
-		//dd($payment);
-		$pedido = Pedido::findorfail($resultPedido['id']);
-		$pedido->codigo = $invoiceNumber;
-		$pedido->save();
-
 		try {
 		    $payment->create($objPaypal->getApi());
 		} catch (Exception $e) {
 		    throw new Exception('Unable to create link for payment');
 		}
+		//Actualizo en el pedido del codigo de compra
+		$pedido = Pedido::findorfail($resultPedido['id']);
+		$pedido->codigo = $invoiceNumber;
+		$pedido->save();
 
-		header('location:' . $payment->getApprovalLink());
+		//Limpio el carrito de la sesion del usuario
+		\Cart::session($userId)->clear();
+
+		header('location:' . $payment->getApprovalLink());		
 		exit(1);
 	}
 
@@ -75,7 +84,12 @@ class PaymentController
 
 	public function successBuy()
 	{
+		$id = Pedido::select(DB::RAW("MAX(id) as id"))->first();
+		$codigo = Pedido::select('codigo')->where('id', '=', $id['id'])->first();
 		\Cart::clear();
-		return view("cart.cart_success");
+		
+		return view("cart.cart_success", [
+			'invoiceNumber' => $codigo['codigo']
+			]);			
 	}
 }
